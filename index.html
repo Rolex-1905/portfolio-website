@@ -410,6 +410,7 @@ header{
   font-family:var(--mono); font-size:12px; color:var(--cyan);
   display:inline-flex; align-items:center; gap:6px;
 }
+.cert-verify-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
 
 .cert-group-card{
   grid-column:1 / -1;
@@ -434,6 +435,8 @@ header{
 }
 .cert-sub-icon{color:var(--cyan); font-size:16px; margin-bottom:8px;}
 .cert-sub .name{font-family:var(--mono); font-size:11.5px; color:var(--text-secondary); margin-bottom:8px; line-height:1.4; min-height:32px; display:flex; align-items:center; justify-content:center;}
+.cert-sub-links{display:flex; gap:12px; justify-content:center;}
+.cert-sub-links a{font-size:11px; color:var(--cyan); font-family:var(--mono);}
 .cert-sub a{font-size:11px; color:var(--cyan); font-family:var(--mono);}
 
 /* ============================================
@@ -857,14 +860,20 @@ footer{
         <div class="cert-badge"><i class="fa-solid fa-robot"></i></div>
         <h4>Mastering GenAI Tools for SOC Analysts</h4>
         <div class="cert-org">SOCRadar · Apr 2026</div>
-        <a class="cert-verify" href="https://credsverse.com/credentials/5dabadeb-54e8-4abc-a1a3-5612e244c20a?preview=1" target="_blank" rel="noopener">Verify Credential <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="cert-verify-row">
+          <a class="cert-verify" href="assets/certs/socradar-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
+          <a class="cert-verify" href="https://credsverse.com/credentials/5dabadeb-54e8-4abc-a1a3-5612e244c20a?preview=1" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
       </div>
 
       <div class="cert-card reveal">
         <div class="cert-badge"><i class="fa-solid fa-cloud"></i></div>
         <h4>Intro to Networking for Cyber Professionals</h4>
         <div class="cert-org">Zscaler Academy · Mar 2025</div>
-        <a class="cert-verify" href="https://verify.skilljar.com/c/j2xx4e35rzid" target="_blank" rel="noopener">Verify Credential <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="cert-verify-row">
+          <a class="cert-verify" href="assets/certs/zscaler-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
+          <a class="cert-verify" href="https://verify.skilljar.com/c/j2xx4e35rzid" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
       </div>
 
       <div class="cert-group-card reveal" id="opswatGroup">
@@ -882,32 +891,50 @@ footer{
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-globe"></i></div>
             <div class="name">Web Traffic Protection Associate</div>
-            <a href="assets/certs/opswat-web-traffic.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-web-traffic.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/Oz0KejKksA" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-network-wired"></i></div>
             <div class="name">Network Security Associate</div>
-            <a href="assets/certs/opswat-network-security.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-network-security.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/gNn2dvdA0w" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-file-shield"></i></div>
             <div class="name">File Security Associate</div>
-            <a href="assets/certs/opswat-file-security.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-file-security.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/c_5HV4ommw" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-database"></i></div>
             <div class="name">Secure Storage Associate</div>
-            <a href="assets/certs/opswat-secure-storage.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-secure-storage.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/WUFi5vwu5Q" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-envelope"></i></div>
             <div class="name">Email Security Associate</div>
-            <a href="assets/certs/opswat-email-security.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-email-security.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/5NYUsD8QHA" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-server"></i></div>
             <div class="name">Legacy-System Security Associate</div>
-            <a href="assets/certs/opswat-legacy-systems.jpg" target="_blank" rel="noopener">View Cert</a>
+            <div class="cert-sub-links">
+              <a href="assets/certs/opswat-legacy-systems.jpg" target="_blank" rel="noopener">View Cert</a>
+              <a href="https://learn.opswatacademy.com/certificate/fm8-aiNNlA" target="_blank" rel="noopener">Verify</a>
+            </div>
           </div>
           <div class="cert-sub">
             <div class="cert-sub-icon"><i class="fa-solid fa-industry"></i></div>
