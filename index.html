@@ -353,6 +353,12 @@ header{
   font-family:var(--mono); font-size:11.5px; color:var(--text-muted);
   padding:10px 14px; border-top:1px solid var(--border);
 }
+.tl-cert-row{
+  display:flex; gap:20px; flex-wrap:wrap;
+  border-top:1px dashed var(--border); padding-top:14px; margin-top:4px; width:100%;
+}
+.tl-cert-row .tl-cert{ border-top:none; padding-top:0; margin-top:0; width:auto; }
+.tl-cert-verify{ color:var(--cyan); }
 .tl-cert{
   display:inline-flex; align-items:center; gap:7px;
   font-family:var(--mono); font-size:12.5px; color:var(--text-muted);
@@ -577,7 +583,7 @@ footer{
 
       <div class="about-photo-wrap reveal">
         <img src="assets/images/profile.jpg" alt="Mudunuru Neeraj">
-        <div class="about-photo-tag">// Mudunuru_Neeraj</div>
+        <div class="about-photo-tag">// mudunuru_neeraj.jpg</div>
       </div>
     </div>
   </div>
@@ -696,7 +702,10 @@ footer{
             <li>Applied NLP fundamentals, including sentiment analysis and text normalization, to build an end-to-end AI chatbot pipeline.</li>
             <li>Delivered a FastAPI e-commerce backend with REST API integration and solved 100+ HackerRank challenges.</li>
           </ul>
-          <a href="assets/certs/innomatics-certificate.jpg" target="_blank" rel="noopener" class="tl-cert"><i class="fa-solid fa-certificate"></i> View Certificate · <span style="color:var(--cyan)">Verify Online</span></a>
+          <div class="tl-cert-row">
+            <a href="assets/certs/innomatics-certificate.jpg" target="_blank" rel="noopener" class="tl-cert"><i class="fa-solid fa-certificate"></i> View Certificate</a>
+            <a href="https://online.innomatics.in/verify/A_02261237" target="_blank" rel="noopener" class="tl-cert tl-cert-verify"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify Online</a>
+          </div>
         </div>
       </div>
 
