@@ -28,6 +28,8 @@
   --cyan: #22d3ee;
   --cyan-dim: #0e93ac;
   --cyan-glow: rgba(34,211,238,0.16);
+  --violet: #a78bfa;
+  --violet-glow: rgba(167,139,250,0.14);
   --green: #4ade80;
   --amber: #fbbf24;
   --mono: 'JetBrains Mono', monospace;
@@ -63,6 +65,12 @@ body::before{
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 75%);
 }
 
+/* ambient depth glows, purely decorative, sit behind content */
+.ambient-glow{
+  position:absolute; border-radius:50%; filter:blur(90px);
+  pointer-events:none; z-index:0; opacity:0.5;
+}
+
 a{color:inherit; text-decoration:none;}
 ul{list-style:none;}
 img{max-width:100%; display:block;}
@@ -76,6 +84,45 @@ h1,h2,h3,h4{font-family:var(--mono); font-weight:700; letter-spacing:-0.01em; co
 
 .section{padding:110px 0; position:relative;}
 @media (max-width:768px){ .section{padding:72px 0;} }
+.section-alt{background:linear-gradient(180deg, transparent, rgba(34,211,238,0.025) 40%, rgba(34,211,238,0.025) 60%, transparent);}
+
+/* flow diagram (project explainer) */
+.flow-diagram{
+  display:flex; align-items:stretch; gap:10px; margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.flow-step{
+  flex:1; min-width:120px;
+  background:var(--bg-panel); border:1px solid var(--border);
+  border-radius:8px; padding:14px 10px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.flow-step i{color:var(--cyan); font-size:16px;}
+.flow-step span{font-size:11.5px; color:var(--text-secondary); line-height:1.4; font-family:var(--mono);}
+.flow-arrow{color:var(--text-muted); font-size:13px; align-self:center; flex-shrink:0;}
+@media (max-width:560px){
+  .flow-diagram{flex-direction:column;}
+  .flow-arrow{transform:rotate(90deg); align-self:center;}
+}
+
+/* recommendations */
+.rec-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; max-width:800px;}
+@media (max-width:700px){ .rec-grid{grid-template-columns:1fr;} }
+.rec-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:30px 26px; position:relative;
+}
+.rec-card:hover{border-color:var(--violet);}
+.rec-quote-mark{
+  font-family:var(--mono); font-size:36px; color:var(--violet); opacity:0.5; line-height:1; margin-bottom:6px;
+}
+.rec-card p{color:var(--text-secondary); font-size:14.5px; margin-bottom:20px; font-style:italic;}
+.rec-who{font-family:var(--mono); font-size:13px; color:var(--text-primary); margin-bottom:2px;}
+.rec-org{font-family:var(--mono); font-size:11.5px; color:var(--text-muted); margin-bottom:16px;}
+.rec-card a{
+  font-family:var(--mono); font-size:12px; color:var(--violet);
+  display:inline-flex; align-items:center; gap:6px;
+}
 
 .eyebrow{
   font-family:var(--mono); font-size:13px; color:var(--cyan);
@@ -132,10 +179,10 @@ header{
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--green); box-shadow:0 0 8px var(--green); flex-shrink:0;}
 .logo span{color:var(--cyan);}
 
-.nav-links{display:flex; gap:30px; align-items:center;}
+.nav-links{display:flex; gap:22px; align-items:center;}
 .nav-links a{
-  font-family:var(--mono); font-size:13.5px; color:var(--text-secondary);
-  position:relative; padding:4px 0; transition:color .2s;
+  font-family:var(--mono); font-size:13px; color:var(--text-secondary);
+  position:relative; padding:4px 0; transition:color .2s; white-space:nowrap;
 }
 .nav-links a:hover, .nav-links a.active{color:var(--cyan);}
 .nav-links a::after{
@@ -151,7 +198,7 @@ header{
   width:40px; height:40px; align-items:center; justify-content:center;
 }
 
-@media (max-width:900px){
+@media (max-width:1080px){
   .nav-links{
     position:fixed; top:64px; right:0; left:0;
     background:var(--bg-panel); border-bottom:1px solid var(--border);
@@ -526,6 +573,7 @@ footer{
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#certifications">Certs</a></li>
+      <li><a href="#recommendations">Letters</a></li>
       <li><a href="#achievements">Achievements</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -540,6 +588,7 @@ footer{
      HERO
 ============================================ -->
 <section class="hero" id="home">
+  <div class="ambient-glow" style="width:600px; height:600px; background:var(--cyan-glow); top:-10%; left:-15%;"></div>
   <div class="wrap hero-grid">
     <div>
       <div class="hero-tag"><span class="pulse"></span> AVAILABLE FOR DFIR / SOC / RESEARCH ROLES</div>
@@ -595,7 +644,7 @@ footer{
 <!-- ============================================
      SKILLS
 ============================================ -->
-<section class="section" id="skills">
+<section class="section section-alt" id="skills">
   <div class="wrap">
     <div class="eyebrow">ls -la ./core-expertise<span class="blink">_</span></div>
     <h2 class="section-title reveal">Skills &amp; Core Expertise</h2>
@@ -766,7 +815,7 @@ footer{
 <!-- ============================================
      PROJECTS
 ============================================ -->
-<section class="section" id="projects">
+<section class="section section-alt" id="projects">
   <div class="wrap">
     <div class="eyebrow">git log --oneline ./projects<span class="blink">_</span></div>
     <h2 class="section-title reveal">Projects</h2>
@@ -780,6 +829,13 @@ footer{
           <a href="https://github.com/Rolex-1905/aysal-shield" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-Shield</h3>
+        <div class="flow-diagram">
+          <div class="flow-step"><i class="fa-solid fa-server"></i><span>Your web app</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-magnifying-glass"></i><span>Scans for 15+ known vulnerabilities</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-file-circle-check"></i><span>Blocks risky deploys automatically</span></div>
+        </div>
         <p>Enterprise DAST automation platform for Apache Tomcat, CLI-first and CI-native, powered by OWASP ZAP. Engineered to target 15+ Apache Tomcat CVEs, integrating security gates into GitHub Actions and Azure DevOps pipelines to enforce vulnerability checks on every deployment, eliminating manual pre-production security testing.</p>
         <div class="tag-row">
           <span class="tag">Python 3.10+</span><span class="tag">OWASP ZAP</span><span class="tag">Java 17+</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span>
@@ -792,6 +848,13 @@ footer{
           <a href="https://github.com/Rolex-1905/aysal-scan" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-Scan</h3>
+        <div class="flow-diagram">
+          <div class="flow-step"><i class="fa-solid fa-code-branch"></i><span>Your codebase &amp; Git history</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-key"></i><span>Finds leaked passwords &amp; API keys</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-triangle-exclamation"></i><span>Shows which ones are still dangerous</span></div>
+        </div>
         <p>Secret detection tool that goes beyond flagging leaked credentials: it verifies whether leaked keys are still active and enumerates real permissions (AWS IAM, GitHub scopes). Detects 17+ credential types across codebases and Git history using regex + Shannon entropy analysis, with risk scoring and SARIF integration for GitHub Security.</p>
         <div class="tag-row">
           <span class="tag">Python 3.11+</span><span class="tag">Typer</span><span class="tag">Pydantic v2</span><span class="tag">boto3</span><span class="tag">SARIF 2.1.0</span>
@@ -804,6 +867,13 @@ footer{
           <a href="https://github.com/Rolex-1905/Aysal-IDS" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-IDS</h3>
+        <div class="flow-diagram">
+          <div class="flow-step"><i class="fa-solid fa-network-wired"></i><span>Live network traffic</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-brain"></i><span>AI checks for attack patterns</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-shield-halved"></i><span>Flags intrusions in real time</span></div>
+        </div>
         <p>AI-powered Network Intrusion Detection System trained on the CICIDS2017 dataset using Random Forest and Logistic Regression classifiers, achieving 95%+ accuracy across DoS, Probe, R2L, and U2R attack categories. Cross-validated against a completely separate CICIDS2018 dataset to prove real-world generalization, a step most portfolio IDS projects skip.</p>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Random Forest</span><span class="tag">Jupyter Notebook</span><span class="tag">CICIDS2017/2018</span>
@@ -816,6 +886,13 @@ footer{
           <a href="https://github.com/Rolex-1905/ai-resume-screening-system" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>GenAI Resume Screening System</h3>
+        <div class="flow-diagram">
+          <div class="flow-step"><i class="fa-solid fa-file-lines"></i><span>Pile of resumes</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-robot"></i><span>AI reads and scores each one</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-ranking-star"></i><span>Ranked shortlist with reasons</span></div>
+        </div>
         <p>An end-to-end GenAI pipeline that semantically parses and ranks resumes against job requirements using LLMs, automating candidate evaluation with structured scoring and justification. Generates ranked shortlists with criteria-level reasoning, eliminating inconsistencies in manual resume review.</p>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">LangSmith</span><span class="tag">OpenAI API</span><span class="tag">Streamlit</span>
@@ -828,6 +905,13 @@ footer{
           <a href="https://github.com/Rolex-1905/rag-customer-support-assistant" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>RAG-Based CRM Query Support System with HITL</h3>
+        <div class="flow-diagram">
+          <div class="flow-step"><i class="fa-solid fa-comment-dots"></i><span>Customer question</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-database"></i><span>AI searches real company docs</span></div>
+          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
+          <div class="flow-step"><i class="fa-solid fa-user-check"></i><span>Accurate answer, or hands off to a human</span></div>
+        </div>
         <p>A production-grade Retrieval-Augmented Generation system with LangGraph workflow orchestration, grounding all AI responses in a domain-specific knowledge base to drastically reduce hallucinations. Embeds a Human-in-the-Loop escalation path: when retrieval confidence drops below 35% or a user requests a human agent, the query routes to a live escalation ticket instead of guessing.</p>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">SentenceTransformers</span><span class="tag">ChromaDB</span><span class="tag">Claude / GPT LLM</span>
@@ -949,6 +1033,36 @@ footer{
 </section>
 
 <!-- ============================================
+     RECOMMENDATIONS
+============================================ -->
+<section class="section" id="recommendations" style="position:relative;">
+  <div class="ambient-glow" style="width:500px; height:500px; background:var(--violet-glow); top:10%; right:-10%;"></div>
+  <div class="wrap">
+    <div class="eyebrow">cat recommendations.txt<span class="blink">_</span></div>
+    <h2 class="section-title reveal">Recommendations</h2>
+    <p class="section-sub reveal">What supervisors and mentors have said about working with me, across internships and investigations.</p>
+
+    <div class="rec-grid">
+      <div class="rec-card reveal">
+        <div class="rec-quote-mark">"</div>
+        <p>Praised for strong technical capability, a proactive approach to client coordination, and dependable handling of both technical and operational responsibilities across security engagements.</p>
+        <div class="rec-who">Jasmitha Routhu, HR Coordinator</div>
+        <div class="rec-org">COE Security LLC</div>
+        <a href="assets/certs/coe-recommendation-letter.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> Read Full Letter</a>
+      </div>
+
+      <div class="rec-card reveal">
+        <div class="rec-quote-mark">"</div>
+        <p>Recognized as a dedicated, disciplined, and highly motivated team member, with a keen eye for detail and excellent professionalism in handling sensitive digital evidence.</p>
+        <div class="rec-who">K. Bhavani Prasad, Cyber Crime Inspector</div>
+        <div class="rec-org">AP Police Cyber Crime Department</div>
+        <a href="assets/certs/ap-police-recommendation.jpg" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> Read Full Letter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
      ACHIEVEMENTS
 ============================================ -->
 <section class="section" id="achievements">
@@ -996,7 +1110,7 @@ footer{
 <!-- ============================================
      EDUCATION
 ============================================ -->
-<section class="section" id="education">
+<section class="section section-alt" id="education">
   <div class="wrap">
     <div class="eyebrow">cat education.txt<span class="blink">_</span></div>
     <h2 class="section-title reveal">Education</h2>
