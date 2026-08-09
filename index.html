@@ -16,36 +16,47 @@
    TOKENS
    ============================================ */
 :root{
-  --bg: #090c14;
-  --bg-panel: #0d121e;
-  --surface: #101726;
-  --surface-hover: #141d30;
-  --border: #1c2740;
-  --border-bright: #24344f;
-  --text-primary: #e7ecf5;
-  --text-secondary: #9fb0c9;
-  --text-muted: #5d6d89;
-  --cyan: #22d3ee;
+  --bg: #0a0e18;
+  --bg-panel: #0e1420;
+  --surface: #121a2b;
+  --surface-hover: #172140;
+  --border: #1e2b45;
+  --border-bright: #2a3c5c;
+  --text-primary: #edf1f9;
+  --text-secondary: #a4b4cf;
+  --text-muted: #7085a3;
+  --cyan: #26d7f0;
   --cyan-dim: #0e93ac;
-  --cyan-glow: rgba(34,211,238,0.16);
-  --violet: #a78bfa;
-  --violet-glow: rgba(167,139,250,0.14);
+  --cyan-glow: rgba(38,215,240,0.17);
+  --violet: #b39dfc;
+  --violet-glow: rgba(179,157,252,0.15);
   --green: #4ade80;
+  --green-glow: rgba(74,222,128,0.08);
+  --green-border: rgba(74,222,128,0.35);
   --amber: #fbbf24;
+  --on-accent: #04141a;
+  --nav-bg: rgba(9,12,20,0.72);
+  --grid-line: rgba(38,215,240,0.04);
+  --section-tint: rgba(38,215,240,0.03);
   --mono: 'JetBrains Mono', monospace;
   --sans: 'Inter', sans-serif;
   --radius: 10px;
   --maxw: 1180px;
+  color-scheme: dark;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
 body{
   background:var(--bg);
   color:var(--text-primary);
   font-family:var(--sans);
   line-height:1.6;
   overflow-x:hidden;
+  transition:background .3s ease, color .3s ease;
+}
+body, header, .terminal, .terminal-bar, .skill-card, .tl-card, .proj-card, .cert-card, .cert-group-card, .cert-sub, .rec-card, .ach-card, .edu-card, .stat-chip, .tag, .totop, .arch-diagram, .arch-node, .arch-branch-row{
+  transition:background .3s ease, background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease, stroke .3s ease;
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
@@ -57,8 +68,8 @@ body::before{
   content:'';
   position:fixed; inset:0;
   background-image:
-    linear-gradient(rgba(34,211,238,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34,211,238,0.035) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 42px 42px;
   pointer-events:none;
   z-index:0;
@@ -84,26 +95,53 @@ h1,h2,h3,h4{font-family:var(--mono); font-weight:700; letter-spacing:-0.01em; co
 
 .section{padding:110px 0; position:relative;}
 @media (max-width:768px){ .section{padding:72px 0;} }
-.section-alt{background:linear-gradient(180deg, transparent, rgba(34,211,238,0.025) 40%, rgba(34,211,238,0.025) 60%, transparent);}
+.section-alt{background:linear-gradient(180deg, transparent, var(--section-tint) 40%, var(--section-tint) 60%, transparent);}
 
-/* flow diagram (project explainer) */
-.flow-diagram{
-  display:flex; align-items:stretch; gap:10px; margin-bottom:20px;
+/* architecture diagram (real pipeline stages per project) */
+.arch-diagram{
+  display:flex; align-items:stretch; gap:6px; margin-bottom:20px;
   flex-wrap:wrap;
 }
-.flow-step{
-  flex:1; min-width:120px;
+.arch-node{
+  flex:1; min-width:112px;
   background:var(--bg-panel); border:1px solid var(--border);
-  border-radius:8px; padding:14px 10px; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:8px;
+  border-radius:8px; padding:13px 8px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  transition:border-color .2s;
 }
-.flow-step i{color:var(--cyan); font-size:16px;}
-.flow-step span{font-size:11.5px; color:var(--text-secondary); line-height:1.4; font-family:var(--mono);}
-.flow-arrow{color:var(--text-muted); font-size:13px; align-self:center; flex-shrink:0;}
-@media (max-width:560px){
-  .flow-diagram{flex-direction:column;}
-  .flow-arrow{transform:rotate(90deg); align-self:center;}
+.arch-node.is-accent{border-color:var(--cyan);}
+.arch-node.is-output{border-color:var(--green);}
+.arch-node.is-decision{border-color:var(--violet);}
+.arch-node svg{width:17px; height:17px; flex-shrink:0; fill:none; stroke:var(--cyan); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;}
+.arch-node.is-output svg{stroke:var(--green);}
+.arch-node.is-decision svg{stroke:var(--violet);}
+.arch-title{font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--text-primary); letter-spacing:0.01em;}
+.arch-sub{font-family:var(--mono); font-size:9.5px; color:var(--text-secondary); line-height:1.35;}
+.arch-arrow{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  flex-shrink:0; gap:3px; width:34px;
 }
+.arch-arrow svg{width:20px; height:10px; stroke:var(--text-muted); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.arch-arrow-label{
+  font-family:var(--mono); font-size:7.5px; text-transform:uppercase; letter-spacing:0.02em;
+  color:var(--text-muted); white-space:nowrap; text-align:center;
+}
+@media (max-width:640px){
+  .arch-diagram{flex-direction:column; align-items:center;}
+  .arch-node{width:100%;}
+  .arch-arrow{flex-direction:row; width:auto; padding:2px 0;}
+  .arch-arrow svg{transform:rotate(90deg);}
+}
+
+/* branch row for diagrams with a decision split (e.g. RAG HITL) */
+.arch-branch-label{
+  text-align:center; font-family:var(--mono); font-size:9.5px; color:var(--text-muted);
+  margin:2px 0 10px; display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.arch-branch-label svg{width:12px; height:12px; stroke:var(--text-muted); stroke-width:1.4; fill:none;}
+.arch-branch-row{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px;}
+.arch-branch-row .arch-node{min-width:0;}
+@media (max-width:420px){ .arch-branch-row{grid-template-columns:1fr;} }
 
 /* recommendations */
 .rec-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; max-width:800px;}
@@ -151,7 +189,7 @@ h1,h2,h3,h4{font-family:var(--mono); font-weight:700; letter-spacing:-0.01em; co
   white-space:nowrap;
 }
 .btn-primary{
-  background:var(--cyan); color:#04141a; border-color:var(--cyan);
+  background:var(--cyan); color:var(--on-accent); border-color:var(--cyan);
 }
 .btn-primary:hover{ box-shadow:0 0 0 4px var(--cyan-glow); transform:translateY(-2px); }
 .btn-ghost{
@@ -164,7 +202,7 @@ h1,h2,h3,h4{font-family:var(--mono); font-weight:700; letter-spacing:-0.01em; co
    ============================================ */
 header{
   position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(9,12,20,0.72);
+  background:var(--nav-bg);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
 }
@@ -219,6 +257,7 @@ header{
   display:flex; align-items:center;
   padding:140px 0 80px;
   position:relative;
+  overflow:hidden;
 }
 .hero-grid{
   display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;
@@ -231,7 +270,7 @@ header{
 .hero-tag{
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:12.5px; color:var(--green);
-  border:1px solid rgba(74,222,128,0.35); background:rgba(74,222,128,0.06);
+  border:1px solid var(--green-border); background:var(--green-glow);
   padding:6px 14px; border-radius:100px; margin-bottom:24px;
 }
 .hero-tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 1.8s infinite;}
@@ -812,6 +851,30 @@ footer{
   </div>
 </section>
 
+<svg width="0" height="0" style="position:absolute; overflow:hidden;" aria-hidden="true">
+<defs>
+  <symbol id="ic-monitor" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="8.5" rx="1"></rect><line x1="8" y1="11" x2="8" y2="13.5"></line><line x1="5" y1="13.5" x2="11" y2="13.5"></line></symbol>
+  <symbol id="ic-search" viewBox="0 0 16 16"><circle cx="6.3" cy="6.3" r="4.3"></circle><line x1="9.4" y1="9.4" x2="14.5" y2="14.5"></line></symbol>
+  <symbol id="ic-shield" viewBox="0 0 16 16"><path d="M8,1 L14.5,3.2 V7.8 C14.5,12 11.5,14.6 8,15.5 C4.5,14.6 1.5,12 1.5,7.8 V3.2 Z"></path></symbol>
+  <symbol id="ic-check" viewBox="0 0 16 16"><path d="M2.5,8.3 L6.2,12 L13.5,3.5"></path></symbol>
+  <symbol id="ic-branch" viewBox="0 0 16 16"><line x1="4" y1="2.5" x2="4" y2="13.5"></line><circle cx="4" cy="3.6" r="1.6"></circle><circle cx="4" cy="12.4" r="1.6"></circle><circle cx="12.5" cy="8" r="1.6"></circle><path d="M4,6.5 C4,9 8.5,8.6 11,8.1"></path></symbol>
+  <symbol id="ic-key" viewBox="0 0 16 16"><circle cx="5" cy="11" r="3"></circle><line x1="7.1" y1="8.9" x2="14.5" y2="1.5"></line><line x1="11.3" y1="4.7" x2="13.3" y2="2.7"></line></symbol>
+  <symbol id="ic-alert" viewBox="0 0 16 16"><path d="M8,1.5 L15,14.5 H1 Z"></path><line x1="8" y1="6" x2="8" y2="10"></line><line x1="8" y1="12.2" x2="8" y2="12.3"></line></symbol>
+  <symbol id="ic-doc" viewBox="0 0 16 16"><rect x="3" y="1" width="10" height="14" rx="1"></rect><line x1="5.3" y1="5" x2="10.7" y2="5"></line><line x1="5.3" y1="8" x2="10.7" y2="8"></line><line x1="5.3" y1="11" x2="9" y2="11"></line></symbol>
+  <symbol id="ic-network" viewBox="0 0 16 16"><circle cx="3" cy="4" r="1.6"></circle><circle cx="13" cy="4" r="1.6"></circle><circle cx="8" cy="13.5" r="1.6"></circle><circle cx="8" cy="8" r="1.3"></circle><line x1="7" y1="7.3" x2="4" y2="4.9"></line><line x1="9" y1="7.3" x2="12" y2="4.9"></line><line x1="8" y1="9.3" x2="8" y2="12"></line></symbol>
+  <symbol id="ic-layers" viewBox="0 0 16 16"><path d="M8,1.5 L14.5,5 L8,8.5 L1.5,5 Z"></path><path d="M1.5,8.2 L8,11.7 L14.5,8.2"></path><path d="M1.5,11.2 L8,14.7 L14.5,11.2"></path></symbol>
+  <symbol id="ic-cpu" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" rx="1"></rect><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="6" y1="12" x2="6" y2="15"></line><line x1="10" y1="12" x2="10" y2="15"></line><line x1="1" y1="6" x2="4" y2="6"></line><line x1="1" y1="10" x2="4" y2="10"></line><line x1="12" y1="6" x2="15" y2="6"></line><line x1="12" y1="10" x2="15" y2="10"></line></symbol>
+  <symbol id="ic-robot" viewBox="0 0 16 16"><rect x="3" y="5.5" width="10" height="8" rx="2"></rect><circle cx="6.3" cy="9.5" r="1"></circle><circle cx="9.7" cy="9.5" r="1"></circle><line x1="8" y1="2" x2="8" y2="5.5"></line><circle cx="8" cy="1.3" r="0.9"></circle><line x1="3" y1="9.7" x2="1" y2="9.7"></line><line x1="13" y1="9.7" x2="15" y2="9.7"></line></symbol>
+  <symbol id="ic-list" viewBox="0 0 16 16"><line x1="2" y1="3" x2="14" y2="3"></line><line x1="2" y1="8" x2="11.5" y2="8"></line><line x1="2" y1="13" x2="9" y2="13"></line></symbol>
+  <symbol id="ic-chat" viewBox="0 0 16 16"><path d="M2,2.5 H14 C14.6,2.5 15,2.9 15,3.5 V9.5 C15,10.1 14.6,10.5 14,10.5 H6.2 L3.2,13.2 V10.5 H2 C1.4,10.5 1,10.1 1,9.5 V3.5 C1,2.9 1.4,2.5 2,2.5 Z"></path><line x1="4.5" y1="6.5" x2="4.5" y2="6.6"></line><line x1="8" y1="6.5" x2="8" y2="6.6"></line><line x1="11.5" y1="6.5" x2="11.5" y2="6.6"></line></symbol>
+  <symbol id="ic-db" viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="6.3" ry="2.2"></ellipse><path d="M1.7,4 V12 C1.7,13.2 4.5,14.2 8,14.2 C11.5,14.2 14.3,13.2 14.3,12 V4"></path><path d="M1.7,8 C1.7,9.2 4.5,10.2 8,10.2 C11.5,10.2 14.3,9.2 14.3,8"></path></symbol>
+  <symbol id="ic-user-check" viewBox="0 0 16 16"><circle cx="6" cy="4.7" r="2.9"></circle><path d="M1,15 C1,10.8 3.4,9 6,9 C6.9,9 7.7,9.2 8.4,9.7"></path><path d="M9.8,10.3 L11.6,12.5 L15,8.2"></path></symbol>
+  <symbol id="ic-chart" viewBox="0 0 16 16"><line x1="2" y1="14.5" x2="2" y2="1.5"></line><line x1="2" y1="14.5" x2="15" y2="14.5"></line><line x1="5" y1="14.5" x2="5" y2="9"></line><line x1="8.5" y1="14.5" x2="8.5" y2="5.5"></line><line x1="12" y1="14.5" x2="12" y2="10.5"></line></symbol>
+  <symbol id="ic-arrow-r" viewBox="0 0 20 10"><line x1="1" y1="5" x2="16" y2="5"></line><path d="M12,1 L17,5 L12,9"></path></symbol>
+  <symbol id="ic-split" viewBox="0 0 16 16"><line x1="8" y1="1" x2="8" y2="7"></line><path d="M8,7 C8,9.2 4,9 4,12"></path><path d="M8,7 C8,9.2 12,9 12,12"></path></symbol>
+</defs>
+</svg>
+
 <!-- ============================================
      PROJECTS
 ============================================ -->
@@ -829,12 +892,36 @@ footer{
           <a href="https://github.com/Rolex-1905/aysal-shield" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-Shield</h3>
-        <div class="flow-diagram">
-          <div class="flow-step"><i class="fa-solid fa-server"></i><span>Your web app</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-magnifying-glass"></i><span>Scans for 15+ known vulnerabilities</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-file-circle-check"></i><span>Blocks risky deploys automatically</span></div>
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <svg><use href="#ic-monitor" xlink:href="#ic-monitor"></use></svg>
+            <div class="arch-title">TARGET APP</div>
+            <div class="arch-sub">Apache Tomcat app</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">map site</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
+            <div class="arch-title">DISCOVERY</div>
+            <div class="arch-sub">Auth + unauth crawl</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">attack + audit</div></div>
+          <div class="arch-node is-accent">
+            <svg><use href="#ic-shield" xlink:href="#ic-shield"></use></svg>
+            <div class="arch-title">DAST + HARDEN</div>
+            <div class="arch-sub">OWASP ZAP scan + Tomcat CIS checks</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">score findings</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
+            <div class="arch-title">NORMALIZE</div>
+            <div class="arch-sub">Dedup + severity map</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">gate decision</div></div>
+          <div class="arch-node is-output">
+            <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
+            <div class="arch-title">CI GATE</div>
+            <div class="arch-sub">Pass / fail on critical</div>
+          </div>
         </div>
         <p>Enterprise DAST automation platform for Apache Tomcat, CLI-first and CI-native, powered by OWASP ZAP. Engineered to target 15+ Apache Tomcat CVEs, integrating security gates into GitHub Actions and Azure DevOps pipelines to enforce vulnerability checks on every deployment, eliminating manual pre-production security testing.</p>
         <div class="tag-row">
@@ -848,12 +935,36 @@ footer{
           <a href="https://github.com/Rolex-1905/aysal-scan" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-Scan</h3>
-        <div class="flow-diagram">
-          <div class="flow-step"><i class="fa-solid fa-code-branch"></i><span>Your codebase &amp; Git history</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-key"></i><span>Finds leaked passwords &amp; API keys</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-triangle-exclamation"></i><span>Shows which ones are still dangerous</span></div>
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <svg><use href="#ic-branch" xlink:href="#ic-branch"></use></svg>
+            <div class="arch-title">REPO SOURCE</div>
+            <div class="arch-sub">Local dir / git history / GitHub URL</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">17+ patterns</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
+            <div class="arch-title">DETECTION</div>
+            <div class="arch-sub">Regex + entropy scan</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">dedup sha-256</div></div>
+          <div class="arch-node is-accent">
+            <svg><use href="#ic-key" xlink:href="#ic-key"></use></svg>
+            <div class="arch-title">BLAST RADIUS</div>
+            <div class="arch-sub">Live key verification</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">aws / github +12</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-alert" xlink:href="#ic-alert"></use></svg>
+            <div class="arch-title">SEVERITY</div>
+            <div class="arch-sub">Critical to low + fix</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">remediation</div></div>
+          <div class="arch-node is-output">
+            <svg><use href="#ic-doc" xlink:href="#ic-doc"></use></svg>
+            <div class="arch-title">OUTPUT</div>
+            <div class="arch-sub">SARIF / JSON / CLI</div>
+          </div>
         </div>
         <p>Secret detection tool that goes beyond flagging leaked credentials: it verifies whether leaked keys are still active and enumerates real permissions (AWS IAM, GitHub scopes). Detects 17+ credential types across codebases and Git history using regex + Shannon entropy analysis, with risk scoring and SARIF integration for GitHub Security.</p>
         <div class="tag-row">
@@ -867,12 +978,36 @@ footer{
           <a href="https://github.com/Rolex-1905/Aysal-IDS" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>Aysal-IDS</h3>
-        <div class="flow-diagram">
-          <div class="flow-step"><i class="fa-solid fa-network-wired"></i><span>Live network traffic</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-brain"></i><span>AI checks for attack patterns</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-shield-halved"></i><span>Flags intrusions in real time</span></div>
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <svg><use href="#ic-network" xlink:href="#ic-network"></use></svg>
+            <div class="arch-title">NETWORK FLOWS</div>
+            <div class="arch-sub">CICIDS2017, 2.8M rows</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">84 features</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-layers" xlink:href="#ic-layers"></use></svg>
+            <div class="arch-title">FEATURE PREP</div>
+            <div class="arch-sub">Clean, encode, scale</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">supervised fit</div></div>
+          <div class="arch-node is-accent">
+            <svg><use href="#ic-cpu" xlink:href="#ic-cpu"></use></svg>
+            <div class="arch-title">TRAIN MODELS</div>
+            <div class="arch-sub">Random forest + logreg</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">95%+ accuracy</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
+            <div class="arch-title">EVALUATE</div>
+            <div class="arch-sub">Accuracy, F1, ROC</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">unseen data test</div></div>
+          <div class="arch-node is-output">
+            <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
+            <div class="arch-title">CROSS-VALIDATE</div>
+            <div class="arch-sub">Held-out CICIDS2018</div>
+          </div>
         </div>
         <p>AI-powered Network Intrusion Detection System trained on the CICIDS2017 dataset using Random Forest and Logistic Regression classifiers, achieving 95%+ accuracy across DoS, Probe, R2L, and U2R attack categories. Cross-validated against a completely separate CICIDS2018 dataset to prove real-world generalization, a step most portfolio IDS projects skip.</p>
         <div class="tag-row">
@@ -886,12 +1021,36 @@ footer{
           <a href="https://github.com/Rolex-1905/ai-resume-screening-system" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>GenAI Resume Screening System</h3>
-        <div class="flow-diagram">
-          <div class="flow-step"><i class="fa-solid fa-file-lines"></i><span>Pile of resumes</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-robot"></i><span>AI reads and scores each one</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-ranking-star"></i><span>Ranked shortlist with reasons</span></div>
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <svg><use href="#ic-doc" xlink:href="#ic-doc"></use></svg>
+            <div class="arch-title">RESUMES + JD</div>
+            <div class="arch-sub">Uploaded candidate pool</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">parse chain</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-robot" xlink:href="#ic-robot"></use></svg>
+            <div class="arch-title">EXTRACTION</div>
+            <div class="arch-sub">LangChain parse chain</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">requirement diff</div></div>
+          <div class="arch-node is-accent">
+            <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
+            <div class="arch-title">MATCHING</div>
+            <div class="arch-sub">Compare vs job reqs</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">reasoned score</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
+            <div class="arch-title">SCORE + EXPLAIN</div>
+            <div class="arch-sub">0-100, LangSmith traced</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">recommend</div></div>
+          <div class="arch-node is-output">
+            <svg><use href="#ic-list" xlink:href="#ic-list"></use></svg>
+            <div class="arch-title">SHORTLIST</div>
+            <div class="arch-sub">Best candidate first</div>
+          </div>
         </div>
         <p>An end-to-end GenAI pipeline that semantically parses and ranks resumes against job requirements using LLMs, automating candidate evaluation with structured scoring and justification. Generates ranked shortlists with criteria-level reasoning, eliminating inconsistencies in manual resume review.</p>
         <div class="tag-row">
@@ -905,12 +1064,43 @@ footer{
           <a href="https://github.com/Rolex-1905/rag-customer-support-assistant" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
         </div>
         <h3>RAG-Based CRM Query Support System with HITL</h3>
-        <div class="flow-diagram">
-          <div class="flow-step"><i class="fa-solid fa-comment-dots"></i><span>Customer question</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-database"></i><span>AI searches real company docs</span></div>
-          <i class="fa-solid fa-arrow-right-long flow-arrow"></i>
-          <div class="flow-step"><i class="fa-solid fa-user-check"></i><span>Accurate answer, or hands off to a human</span></div>
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <svg><use href="#ic-chat" xlink:href="#ic-chat"></use></svg>
+            <div class="arch-title">CUSTOMER Q</div>
+            <div class="arch-sub">Live support query</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">route query</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
+            <div class="arch-title">CLASSIFY</div>
+            <div class="arch-sub">Billing / tech / account</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">semantic search</div></div>
+          <div class="arch-node is-accent">
+            <svg><use href="#ic-db" xlink:href="#ic-db"></use></svg>
+            <div class="arch-title">RETRIEVE</div>
+            <div class="arch-sub">ChromaDB vector search</div>
+          </div>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">grounded prompt</div></div>
+          <div class="arch-node">
+            <svg><use href="#ic-robot" xlink:href="#ic-robot"></use></svg>
+            <div class="arch-title">GENERATE</div>
+            <div class="arch-sub">Claude / GPT + context</div>
+          </div>
+        </div>
+        <div class="arch-branch-label"><svg><use href="#ic-split" xlink:href="#ic-split"></use></svg> then, routed by retrieval confidence</div>
+        <div class="arch-branch-row">
+          <div class="arch-node is-output">
+            <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
+            <div class="arch-title">DIRECT ANSWER</div>
+            <div class="arch-sub">Confidence &ge; 35%, sent to customer</div>
+          </div>
+          <div class="arch-node is-decision">
+            <svg><use href="#ic-user-check" xlink:href="#ic-user-check"></use></svg>
+            <div class="arch-title">ESCALATE</div>
+            <div class="arch-sub">Confidence &lt; 35%, human review (HITL)</div>
+          </div>
         </div>
         <p>A production-grade Retrieval-Augmented Generation system with LangGraph workflow orchestration, grounding all AI responses in a domain-specific knowledge base to drastically reduce hallucinations. Embeds a Human-in-the-Loop escalation path: when retrieval confidence drops below 35% or a user requests a human agent, the query routes to a live escalation ticket instead of guessing.</p>
         <div class="tag-row">
@@ -1035,7 +1225,7 @@ footer{
 <!-- ============================================
      RECOMMENDATIONS
 ============================================ -->
-<section class="section" id="recommendations" style="position:relative;">
+<section class="section" id="recommendations" style="position:relative; overflow:hidden;">
   <div class="ambient-glow" style="width:500px; height:500px; background:var(--violet-glow); top:10%; right:-10%;"></div>
   <div class="wrap">
     <div class="eyebrow">cat recommendations.txt<span class="blink">_</span></div>
