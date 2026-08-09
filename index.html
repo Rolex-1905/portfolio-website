@@ -99,38 +99,38 @@ h1,h2,h3,h4{font-family:var(--mono); font-weight:700; letter-spacing:-0.01em; co
 
 /* architecture diagram (real pipeline stages per project) */
 .arch-diagram{
-  display:flex; align-items:stretch; gap:6px; margin-bottom:20px;
-  flex-wrap:wrap;
+  display:flex; flex-direction:column; gap:0; margin-bottom:20px;
 }
 .arch-node{
-  flex:1; min-width:112px;
+  width:100%;
   background:var(--bg-panel); border:1px solid var(--border);
-  border-radius:8px; padding:13px 8px; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:6px;
+  border-radius:8px; padding:12px 16px;
+  display:flex; flex-direction:row; align-items:center; gap:12px;
   transition:border-color .2s;
 }
 .arch-node.is-accent{border-color:var(--cyan);}
 .arch-node.is-output{border-color:var(--green);}
 .arch-node.is-decision{border-color:var(--violet);}
-.arch-node svg{width:17px; height:17px; flex-shrink:0; fill:none; stroke:var(--cyan); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;}
+.arch-node svg{width:19px; height:19px; flex-shrink:0; fill:none; stroke:var(--cyan); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;}
 .arch-node.is-output svg{stroke:var(--green);}
 .arch-node.is-decision svg{stroke:var(--violet);}
-.arch-title{font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--text-primary); letter-spacing:0.01em;}
+.arch-node-text{display:flex; flex-direction:column; gap:2px; min-width:0;}
+.arch-title{font-family:var(--mono); font-size:11px; font-weight:700; color:var(--text-primary); letter-spacing:0.01em;}
 .arch-sub{font-family:var(--mono); font-size:9.5px; color:var(--text-secondary); line-height:1.35;}
 .arch-arrow{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  flex-shrink:0; gap:3px; width:34px;
+  display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
+  gap:10px; padding:6px 0 6px 8px;
 }
-.arch-arrow svg{width:20px; height:10px; stroke:var(--text-muted); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.arch-arrow svg{width:16px; height:8px; stroke:var(--text-muted); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; transform:rotate(90deg);}
 .arch-arrow-label{
-  font-family:var(--mono); font-size:7.5px; text-transform:uppercase; letter-spacing:0.02em;
-  color:var(--text-muted); white-space:nowrap; text-align:center;
+  font-family:var(--mono); font-size:8.5px; text-transform:uppercase; letter-spacing:0.02em;
+  color:var(--text-muted);
 }
-@media (max-width:640px){
-  .arch-diagram{flex-direction:column; align-items:center;}
-  .arch-node{width:100%;}
-  .arch-arrow{flex-direction:row; width:auto; padding:2px 0;}
-  .arch-arrow svg{transform:rotate(90deg);}
+@media (min-width:720px){
+  .arch-node{padding:14px 20px;}
+  .arch-node svg{width:21px; height:21px;}
+  .arch-title{font-size:12px;}
+  .arch-sub{font-size:10px;}
 }
 
 /* branch row for diagrams with a decision split (e.g. RAG HITL) */
@@ -895,32 +895,42 @@ footer{
         <div class="arch-diagram">
           <div class="arch-node">
             <svg><use href="#ic-monitor" xlink:href="#ic-monitor"></use></svg>
-            <div class="arch-title">TARGET APP</div>
+            <div class="arch-node-text">
+              <div class="arch-title">TARGET APP</div>
             <div class="arch-sub">Apache Tomcat app</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">map site</div></div>
           <div class="arch-node">
             <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
-            <div class="arch-title">DISCOVERY</div>
+            <div class="arch-node-text">
+              <div class="arch-title">DISCOVERY</div>
             <div class="arch-sub">Auth + unauth crawl</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">attack + audit</div></div>
           <div class="arch-node is-accent">
             <svg><use href="#ic-shield" xlink:href="#ic-shield"></use></svg>
-            <div class="arch-title">DAST + HARDEN</div>
+            <div class="arch-node-text">
+              <div class="arch-title">DAST + HARDEN</div>
             <div class="arch-sub">OWASP ZAP scan + Tomcat CIS checks</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">score findings</div></div>
           <div class="arch-node">
             <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
-            <div class="arch-title">NORMALIZE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">NORMALIZE</div>
             <div class="arch-sub">Dedup + severity map</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">gate decision</div></div>
           <div class="arch-node is-output">
             <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
-            <div class="arch-title">CI GATE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">CI GATE</div>
             <div class="arch-sub">Pass / fail on critical</div>
+            </div>
           </div>
         </div>
         <p>Enterprise DAST automation platform for Apache Tomcat, CLI-first and CI-native, powered by OWASP ZAP. Engineered to target 15+ Apache Tomcat CVEs, integrating security gates into GitHub Actions and Azure DevOps pipelines to enforce vulnerability checks on every deployment, eliminating manual pre-production security testing.</p>
@@ -938,32 +948,42 @@ footer{
         <div class="arch-diagram">
           <div class="arch-node">
             <svg><use href="#ic-branch" xlink:href="#ic-branch"></use></svg>
-            <div class="arch-title">REPO SOURCE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">REPO SOURCE</div>
             <div class="arch-sub">Local dir / git history / GitHub URL</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">17+ patterns</div></div>
           <div class="arch-node">
             <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
-            <div class="arch-title">DETECTION</div>
+            <div class="arch-node-text">
+              <div class="arch-title">DETECTION</div>
             <div class="arch-sub">Regex + entropy scan</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">dedup sha-256</div></div>
           <div class="arch-node is-accent">
             <svg><use href="#ic-key" xlink:href="#ic-key"></use></svg>
-            <div class="arch-title">BLAST RADIUS</div>
+            <div class="arch-node-text">
+              <div class="arch-title">BLAST RADIUS</div>
             <div class="arch-sub">Live key verification</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">aws / github +12</div></div>
           <div class="arch-node">
             <svg><use href="#ic-alert" xlink:href="#ic-alert"></use></svg>
-            <div class="arch-title">SEVERITY</div>
+            <div class="arch-node-text">
+              <div class="arch-title">SEVERITY</div>
             <div class="arch-sub">Critical to low + fix</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">remediation</div></div>
           <div class="arch-node is-output">
             <svg><use href="#ic-doc" xlink:href="#ic-doc"></use></svg>
-            <div class="arch-title">OUTPUT</div>
+            <div class="arch-node-text">
+              <div class="arch-title">OUTPUT</div>
             <div class="arch-sub">SARIF / JSON / CLI</div>
+            </div>
           </div>
         </div>
         <p>Secret detection tool that goes beyond flagging leaked credentials: it verifies whether leaked keys are still active and enumerates real permissions (AWS IAM, GitHub scopes). Detects 17+ credential types across codebases and Git history using regex + Shannon entropy analysis, with risk scoring and SARIF integration for GitHub Security.</p>
@@ -981,32 +1001,42 @@ footer{
         <div class="arch-diagram">
           <div class="arch-node">
             <svg><use href="#ic-network" xlink:href="#ic-network"></use></svg>
-            <div class="arch-title">NETWORK FLOWS</div>
+            <div class="arch-node-text">
+              <div class="arch-title">NETWORK FLOWS</div>
             <div class="arch-sub">CICIDS2017, 2.8M rows</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">84 features</div></div>
           <div class="arch-node">
             <svg><use href="#ic-layers" xlink:href="#ic-layers"></use></svg>
-            <div class="arch-title">FEATURE PREP</div>
+            <div class="arch-node-text">
+              <div class="arch-title">FEATURE PREP</div>
             <div class="arch-sub">Clean, encode, scale</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">supervised fit</div></div>
           <div class="arch-node is-accent">
             <svg><use href="#ic-cpu" xlink:href="#ic-cpu"></use></svg>
-            <div class="arch-title">TRAIN MODELS</div>
+            <div class="arch-node-text">
+              <div class="arch-title">TRAIN MODELS</div>
             <div class="arch-sub">Random forest + logreg</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">95%+ accuracy</div></div>
           <div class="arch-node">
             <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
-            <div class="arch-title">EVALUATE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">EVALUATE</div>
             <div class="arch-sub">Accuracy, F1, ROC</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">unseen data test</div></div>
           <div class="arch-node is-output">
             <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
-            <div class="arch-title">CROSS-VALIDATE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">CROSS-VALIDATE</div>
             <div class="arch-sub">Held-out CICIDS2018</div>
+            </div>
           </div>
         </div>
         <p>AI-powered Network Intrusion Detection System trained on the CICIDS2017 dataset using Random Forest and Logistic Regression classifiers, achieving 95%+ accuracy across DoS, Probe, R2L, and U2R attack categories. Cross-validated against a completely separate CICIDS2018 dataset to prove real-world generalization, a step most portfolio IDS projects skip.</p>
@@ -1024,32 +1054,42 @@ footer{
         <div class="arch-diagram">
           <div class="arch-node">
             <svg><use href="#ic-doc" xlink:href="#ic-doc"></use></svg>
-            <div class="arch-title">RESUMES + JD</div>
+            <div class="arch-node-text">
+              <div class="arch-title">RESUMES + JD</div>
             <div class="arch-sub">Uploaded candidate pool</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">parse chain</div></div>
           <div class="arch-node">
             <svg><use href="#ic-robot" xlink:href="#ic-robot"></use></svg>
-            <div class="arch-title">EXTRACTION</div>
+            <div class="arch-node-text">
+              <div class="arch-title">EXTRACTION</div>
             <div class="arch-sub">LangChain parse chain</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">requirement diff</div></div>
           <div class="arch-node is-accent">
             <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
-            <div class="arch-title">MATCHING</div>
+            <div class="arch-node-text">
+              <div class="arch-title">MATCHING</div>
             <div class="arch-sub">Compare vs job reqs</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">reasoned score</div></div>
           <div class="arch-node">
             <svg><use href="#ic-chart" xlink:href="#ic-chart"></use></svg>
-            <div class="arch-title">SCORE + EXPLAIN</div>
+            <div class="arch-node-text">
+              <div class="arch-title">SCORE + EXPLAIN</div>
             <div class="arch-sub">0-100, LangSmith traced</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">recommend</div></div>
           <div class="arch-node is-output">
             <svg><use href="#ic-list" xlink:href="#ic-list"></use></svg>
-            <div class="arch-title">SHORTLIST</div>
+            <div class="arch-node-text">
+              <div class="arch-title">SHORTLIST</div>
             <div class="arch-sub">Best candidate first</div>
+            </div>
           </div>
         </div>
         <p>An end-to-end GenAI pipeline that semantically parses and ranks resumes against job requirements using LLMs, automating candidate evaluation with structured scoring and justification. Generates ranked shortlists with criteria-level reasoning, eliminating inconsistencies in manual resume review.</p>
@@ -1067,39 +1107,51 @@ footer{
         <div class="arch-diagram">
           <div class="arch-node">
             <svg><use href="#ic-chat" xlink:href="#ic-chat"></use></svg>
-            <div class="arch-title">CUSTOMER Q</div>
+            <div class="arch-node-text">
+              <div class="arch-title">CUSTOMER Q</div>
             <div class="arch-sub">Live support query</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">route query</div></div>
           <div class="arch-node">
             <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
-            <div class="arch-title">CLASSIFY</div>
+            <div class="arch-node-text">
+              <div class="arch-title">CLASSIFY</div>
             <div class="arch-sub">Billing / tech / account</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">semantic search</div></div>
           <div class="arch-node is-accent">
             <svg><use href="#ic-db" xlink:href="#ic-db"></use></svg>
-            <div class="arch-title">RETRIEVE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">RETRIEVE</div>
             <div class="arch-sub">ChromaDB vector search</div>
+            </div>
           </div>
           <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">grounded prompt</div></div>
           <div class="arch-node">
             <svg><use href="#ic-robot" xlink:href="#ic-robot"></use></svg>
-            <div class="arch-title">GENERATE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">GENERATE</div>
             <div class="arch-sub">Claude / GPT + context</div>
+            </div>
           </div>
         </div>
         <div class="arch-branch-label"><svg><use href="#ic-split" xlink:href="#ic-split"></use></svg> then, routed by retrieval confidence</div>
         <div class="arch-branch-row">
           <div class="arch-node is-output">
             <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
-            <div class="arch-title">DIRECT ANSWER</div>
+            <div class="arch-node-text">
+              <div class="arch-title">DIRECT ANSWER</div>
             <div class="arch-sub">Confidence &ge; 35%, sent to customer</div>
+            </div>
           </div>
           <div class="arch-node is-decision">
             <svg><use href="#ic-user-check" xlink:href="#ic-user-check"></use></svg>
-            <div class="arch-title">ESCALATE</div>
+            <div class="arch-node-text">
+              <div class="arch-title">ESCALATE</div>
             <div class="arch-sub">Confidence &lt; 35%, human review (HITL)</div>
+            </div>
           </div>
         </div>
         <p>A production-grade Retrieval-Augmented Generation system with LangGraph workflow orchestration, grounding all AI responses in a domain-specific knowledge base to drastically reduce hallucinations. Embeds a Human-in-the-Loop escalation path: when retrieval confidence drops below 35% or a user requests a human agent, the query routes to a live escalation ticket instead of guessing.</p>
