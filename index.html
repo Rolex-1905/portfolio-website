@@ -494,9 +494,11 @@ header{
 /* ============================================
    CERTIFICATIONS
    ============================================ */
-.certs-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-@media (max-width:900px){ .certs-grid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:640px){ .certs-grid{grid-template-columns:1fr;} }
+.certs-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+.certs-grid > .cert-card{flex:0 0 calc((100% - 40px) / 3);}
+.certs-grid > .cert-group-card{flex:0 0 100%;}
+@media (max-width:900px){ .certs-grid > .cert-card{flex-basis:calc((100% - 20px) / 2);} }
+@media (max-width:640px){ .certs-grid > .cert-card{flex-basis:100%;} }
 .cert-card{
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
   padding:24px; text-align:center; transition:border-color .25s, transform .25s;
@@ -677,11 +679,11 @@ footer{
     <div class="about-grid">
       <div class="about-text reveal">
         <p>I'm a final-year <strong>B.Tech Cyber Security</strong> student at Vignan's Institute of Information Technology, Visakhapatnam, graduating in 2027. My work sits at the intersection of <strong>digital forensics</strong>, <strong>incident response</strong>, and applied AI security, from analyzing CDR/IPDR records on live cybercrime cases to building machine-learning intrusion detection systems.</p>
-        <p>Across six internships, I've investigated real cybercrime cases with the <strong>AP Police Cyber Crime Department</strong>, engineered client-facing security tooling for a US-based firm on night shifts, and worked on GenAI and RAG systems in applied AI research. I currently consult at <strong>SIRI Law LLP</strong>, bridging cybersecurity findings with legal frameworks like the IT Act and DPDP Act 2023.</p>
+        <p>Across seven internships, I've investigated real cybercrime cases with the <strong>AP Police Cyber Crime Department</strong>, monitored client endpoints with Wazuh and investigated a LockBit-branded ransomware intrusion as a SOC analyst intern, engineered client-facing security tooling for a US-based firm on night shifts, and worked on GenAI and RAG systems in applied AI research. I most recently consulted at <strong>SIRI Law LLP</strong>, bridging cybersecurity findings with legal frameworks like the IT Act and DPDP Act 2023.</p>
         <p>I'm working toward a career in <strong>digital forensics, DFIR analysis, and cybercrime investigation</strong>, ideally with government agencies, intelligence organizations, or specialized security research teams.</p>
 
         <div class="stat-row">
-          <div class="stat-chip"><div class="num">6</div><div class="lbl">INTERNSHIPS</div></div>
+          <div class="stat-chip"><div class="num">7</div><div class="lbl">INTERNSHIPS</div></div>
           <div class="stat-chip"><div class="num">5</div><div class="lbl">TOOLS SHIPPED</div></div>
           <div class="stat-chip"><div class="num">Top 50</div><div class="lbl">OF 5,000+</div></div>
           <div class="stat-chip"><div class="num">2027</div><div class="lbl">GRADUATE</div></div>
@@ -712,9 +714,13 @@ footer{
           <h3>Security Operations</h3>
         </div>
         <div class="tag-row">
-          <span class="tag">SOC Monitoring</span><span class="tag">Threat Detection</span>
-          <span class="tag">Incident Response</span><span class="tag">Log Analysis</span>
-          <span class="tag">Network Traffic Monitoring</span><span class="tag">DAST Scanning</span>
+          <span class="tag">Wazuh</span><span class="tag">Splunk</span>
+          <span class="tag">SIEM Integrations</span><span class="tag">SOC Monitoring</span>
+          <span class="tag">Threat Detection</span><span class="tag">Incident Response</span>
+          <span class="tag">Log Analysis</span><span class="tag">Network Traffic Monitoring</span>
+          <span class="tag">VirusTotal</span><span class="tag">Shodan</span>
+          <span class="tag">urlscan.io</span><span class="tag">WireGuard VPN</span>
+          <span class="tag">AI-Assisted SOC Automation</span>
         </div>
       </div>
 
@@ -724,10 +730,15 @@ footer{
           <h3>Digital Forensics</h3>
         </div>
         <div class="tag-row">
-          <span class="tag">Mobile Forensics</span><span class="tag">CDR/IPDR Analysis</span>
-          <span class="tag">Digital Evidence Acquisition</span><span class="tag">FTK Imager</span>
-          <span class="tag">FTK Toolkit</span><span class="tag">Hancom Forensic Tools</span>
-          <span class="tag">Oxygen Mobile Forensics</span><span class="tag">LSB Steganography</span>
+          <span class="tag">KAPE</span><span class="tag">EvtxECmd</span>
+          <span class="tag">MFTECmd</span><span class="tag">AmcacheParser</span>
+          <span class="tag">RegRipper</span><span class="tag">Plaso (log2timeline)</span>
+          <span class="tag">Chainsaw (Sigma)</span><span class="tag">Hindsight</span>
+          <span class="tag">FTK Imager</span><span class="tag">FTK Toolkit</span>
+          <span class="tag">Hancom Forensic Tools</span><span class="tag">Oxygen Mobile Forensics</span>
+          <span class="tag">CDR/IPDR Analysis</span><span class="tag">Windows Artifact Analysis</span>
+          <span class="tag">Timeline Analysis</span><span class="tag">Chain of Custody</span>
+          <span class="tag">LSB Steganography</span><span class="tag">DPDP Act 2023</span>
         </div>
       </div>
 
@@ -737,9 +748,11 @@ footer{
           <h3>Malware &amp; Vulnerability</h3>
         </div>
         <div class="tag-row">
-          <span class="tag">Malware Analysis Fundamentals</span><span class="tag">Vulnerability Scanning</span>
-          <span class="tag">Reconnaissance</span><span class="tag">SCADA/ICS Security</span>
-          <span class="tag">AI-Based Attack &amp; Defence</span>
+          <span class="tag">DAST</span><span class="tag">OWASP ZAP</span>
+          <span class="tag">SAST</span><span class="tag">Vulnerability Scanning</span>
+          <span class="tag">Reconnaissance</span><span class="tag">SARIF</span>
+          <span class="tag">Malware Analysis Fundamentals</span><span class="tag">SCADA/ICS Security</span>
+          <span class="tag">AI-Based Attack &amp; Defence</span><span class="tag">TCP/IP</span>
         </div>
       </div>
 
@@ -750,9 +763,13 @@ footer{
         </div>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">FastAPI</span>
-          <span class="tag">Generative AI</span><span class="tag">RAG</span>
-          <span class="tag">NLP</span><span class="tag">Sentiment Analysis</span>
-          <span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span>
+          <span class="tag">LangChain (LCEL)</span><span class="tag">LangGraph</span>
+          <span class="tag">LangSmith</span><span class="tag">Generative AI</span>
+          <span class="tag">RAG</span><span class="tag">ChromaDB</span>
+          <span class="tag">SentenceTransformers</span><span class="tag">NLP</span>
+          <span class="tag">scikit-learn</span><span class="tag">Streamlit</span>
+          <span class="tag">GitHub Actions</span><span class="tag">GitLab CI</span>
+          <span class="tag">Azure DevOps</span><span class="tag">Docker</span>
         </div>
       </div>
     </div>
@@ -766,14 +783,27 @@ footer{
   <div class="wrap">
     <div class="eyebrow">tail -f ./experience.log<span class="blink">_</span></div>
     <h2 class="section-title reveal">Experience</h2>
-    <p class="section-sub reveal">Six internships spanning cybercrime investigation, SOC-adjacent client work, and applied AI research.</p>
+    <p class="section-sub reveal">Seven internships spanning cybercrime investigation, SOC operations, and applied AI research, plus ongoing volunteer work.</p>
 
     <div class="timeline">
 
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
         <div class="tl-card">
-          <div class="tl-top"><span class="tl-role">Cyber Law Technical Consultant</span><span class="tl-date">Jun 2026 – Present</span></div>
+          <div class="tl-top"><span class="tl-role">Cyber Security Volunteer</span><span class="tl-date">Sep 2026 – Present</span></div>
+          <div class="tl-org">Cyber Secured India</div>
+          <ul class="tl-list">
+            <li>Coordinate speaker engagement and organize cybersecurity programs, supporting the team in delivering successful sessions.</li>
+            <li>Guide and mentor a cohort of 100 interns learning cybersecurity.</li>
+            <li>Teach digital forensics fundamentals to interns and support their practical learning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top"><span class="tl-role">Cyber Law Technical Consultant</span><span class="tl-date">Jun 2026 – Sep 2026</span></div>
           <div class="tl-org">SIRI Law LLP</div>
           <ul class="tl-list">
             <li>Conducted legal assessment of technology files against the Digital Personal Data Protection (DPDP) Act 2023, identifying what personal data was being processed, by whom, and the resulting legal questions, and prepared working notes used by the legal team.</li>
@@ -788,15 +818,16 @@ footer{
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
         <div class="tl-card">
-          <div class="tl-top"><span class="tl-role">Cybersecurity Engineer</span><span class="tl-date">Dec 2025 – May 2026</span></div>
-          <div class="tl-org">COE Security LLC · North Carolina, USA (Night Shifts)</div>
+          <div class="tl-top"><span class="tl-role">SOC Analyst Intern</span><span class="tl-date">Feb 2026 – Present</span></div>
+          <div class="tl-org">WeAreCyberSec</div>
           <ul class="tl-list">
-            <li>Handled end-to-end client onboarding for 5+ security engagements, coordinating requirements between clients and internal teams.</li>
-            <li>Conducted extensive OSINT research targeting key stakeholders and certification bodies to support business development and pre-engagement planning.</li>
-            <li>Maintained comprehensive project documentation spanning client requirements, workflows, and progress logs.</li>
-            <li>Enhanced an AI-based penetration testing tool by researching remote IoT attack surfaces and configuring secure VPN tunnels for client-side testing.</li>
+            <li>Monitored and triaged security events across 10 client endpoints using Wazuh; maintained the Wazuh infrastructure and resolved endpoint connectivity issues.</li>
+            <li>Designed and deployed a WireGuard-based monitoring architecture that routed Wazuh telemetry through an encrypted VPN without disrupting normal endpoint traffic; integrated VirusTotal threat intelligence and automated reporting with Python and Discord webhooks.</li>
+            <li>Conducted a LockBit-branded ransomware forensic investigation across 1 Windows Server and 3 Windows endpoints using KAPE, analyzing EVTX, Amcache, Registry, MFT, AnyDesk and SMB artifacts; identified a Windows endpoint as patient zero and reconstructed the path to the Windows Server where the ransomware executed.</li>
+            <li>Responded to a DDoS attack on a client environment: analyzed abnormal traffic, identified malicious sources, implemented defensive controls and coordinated mitigation to restore service.</li>
+            <li>Developing AI-assisted SOC automation for alert triage, investigation support and report generation; contributed authorized security testing and code-level recommendations to an AI-powered penetration-testing product.</li>
           </ul>
-          <a href="assets/certs/coe-experience-letter.pdf" target="_blank" rel="noopener" class="tl-cert"><i class="fa-solid fa-file-shield"></i> View Experience Letter</a>
+          <a href="https://github.com/Rolex-1905/security-workbench/tree/main/writeups/dfir/lockbit-ransomware-investigation" target="_blank" rel="noopener" class="tl-cert"><i class="fa-brands fa-github"></i> View Investigation Write-up</a>
         </div>
       </div>
 
@@ -806,15 +837,31 @@ footer{
           <div class="tl-top"><span class="tl-role">Agentic AI Intern</span><span class="tl-date">Feb 2026 – Apr 2026</span></div>
           <div class="tl-org">Innomatics Research Labs</div>
           <ul class="tl-list">
-            <li>Engineered a GenAI-powered resume screening system using LangChain pipelines, reducing manual screening effort by ~70%; integrated LangSmith for LLM observability and tracing.</li>
-            <li>Developed a production-ready RAG-based CRM prototype, reducing AI hallucinations and improving contextual accuracy for client-facing query resolution.</li>
-            <li>Applied NLP fundamentals, including sentiment analysis and text normalization, to build an end-to-end AI chatbot pipeline.</li>
-            <li>Delivered a FastAPI e-commerce backend with REST API integration and solved 100+ HackerRank challenges.</li>
+            <li>Built an AI resume-screening system with LangChain pipelines for skill extraction, matching and 0-100 scoring with explanations; traced every run with LangSmith.</li>
+            <li>Developed a RAG customer-support assistant with LangGraph, ChromaDB and SentenceTransformers, including intent classification and human-in-the-loop escalation.</li>
+            <li>Built an end-to-end AI chatbot pipeline using NLP techniques including sentiment analysis and text normalization.</li>
+            <li>Delivered a FastAPI e-commerce backend with REST API integration; solved 100+ HackerRank challenges.</li>
           </ul>
           <div class="tl-cert-row">
             <a href="assets/certs/innomatics-certificate.jpg" target="_blank" rel="noopener" class="tl-cert"><i class="fa-solid fa-certificate"></i> View Certificate</a>
             <a href="https://online.innomatics.in/verify/A_02261237" target="_blank" rel="noopener" class="tl-cert tl-cert-verify"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify Online</a>
           </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top"><span class="tl-role">Cybersecurity Engineer</span><span class="tl-date">Dec 2025 – May 2026</span></div>
+          <div class="tl-org">COE Security LLC · North Carolina, USA (Night Shifts)</div>
+          <ul class="tl-list">
+            <li>Managed end-to-end onboarding for 5+ security engagements, coordinating requirements between clients and internal teams to reduce onboarding delays.</li>
+            <li>Used Splunk for search, report generation and routine operations tasks.</li>
+            <li>Conducted OSINT research on key stakeholders and certification bodies, delivering intelligence reports that supported business development and pre-engagement planning.</li>
+            <li>Maintained project documentation covering client requirements, workflow updates and progress logs.</li>
+            <li>Enhanced an AI-based penetration testing tool by researching remote IoT attack surfaces, recommending security hardening and configuring secure VPN tunnels for controlled client-side testing.</li>
+          </ul>
+          <a href="assets/certs/coe-experience-letter.pdf" target="_blank" rel="noopener" class="tl-cert"><i class="fa-solid fa-file-shield"></i> View Experience Letter</a>
         </div>
       </div>
 
@@ -897,9 +944,37 @@ footer{
   <div class="wrap">
     <div class="eyebrow">git log --oneline ./projects<span class="blink">_</span></div>
     <h2 class="section-title reveal">Projects</h2>
-    <p class="section-sub reveal">Security tools I've designed and shipped publicly on GitHub, from DAST automation to AI-based intrusion detection.</p>
+    <p class="section-sub reveal">Security tools and research published on GitHub, from DFIR write-ups and DAST automation to AI-based intrusion detection.</p>
 
     <div class="projects-grid">
+
+      <div class="proj-card reveal proj-wide">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fa-solid fa-microscope"></i></div>
+          <a href="https://github.com/Rolex-1905/security-workbench" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <h3>Security Workbench: Public Security Research Repository</h3>
+        <div class="arch-branch-row">
+          <a class="arch-node is-accent" href="https://github.com/Rolex-1905/security-workbench/tree/main/writeups/dfir/lockbit-ransomware-investigation" target="_blank" rel="noopener">
+            <svg><use href="#ic-search" xlink:href="#ic-search"></use></svg>
+            <div class="arch-node-text">
+              <div class="arch-title">LOCKBIT RANSOMWARE INVESTIGATION</div>
+              <div class="arch-sub">793-file KAPE triage, custom AnyDesk log parser, 9,138 files encrypted, 92 of 158 event logs empty</div>
+            </div>
+          </a>
+          <a class="arch-node is-accent" href="https://github.com/Rolex-1905/security-workbench/blob/main/writeups/security-infrastructure/wazuh-siem-integrations/README.md" target="_blank" rel="noopener">
+            <svg><use href="#ic-shield" xlink:href="#ic-shield"></use></svg>
+            <div class="arch-node-text">
+              <div class="arch-title">WAZUH SIEM INTEGRATIONS</div>
+              <div class="arch-sub">8 integrations researched, defects corrected in decoders and rulesets, hardcoded API keys removed</div>
+            </div>
+          </a>
+        </div>
+        <p>A public repository of hands-on security research: a first-hand forensic investigation of a LockBit-branded ransomware intrusion, with a unified attack timeline built from Chainsaw, EvtxECmd, MFTECmd, AmcacheParser, RegRipper and Plaso, plus a Wazuh integrations reference corrected from community posts that did not work as written.</p>
+        <div class="tag-row">
+          <span class="tag">KAPE</span><span class="tag">Chainsaw</span><span class="tag">EvtxECmd</span><span class="tag">MFTECmd</span><span class="tag">Plaso</span><span class="tag">Wazuh</span><span class="tag">Python</span>
+        </div>
+      </div>
 
       <div class="proj-card reveal">
         <div class="proj-top">
@@ -940,7 +1015,7 @@ footer{
             </div>
           </div>
         </div>
-        <p>Enterprise DAST automation platform for Apache Tomcat, CLI-first and CI-native, powered by OWASP ZAP. Engineered to target 15+ Apache Tomcat CVEs, integrating security gates into GitHub Actions and Azure DevOps pipelines to enforce vulnerability checks on every deployment, eliminating manual pre-production security testing.</p>
+        <p>Enterprise DAST automation platform for Apache Tomcat, CLI-first and CI-native, powered by OWASP ZAP. Engineered to target 15+ Apache Tomcat CVEs, integrating policy-based security gates into GitHub Actions, GitLab CI and Azure DevOps pipelines that fail builds on High/Critical findings, with authorization enforcement, PII redaction and Docker packaging.</p>
         <div class="tag-row">
           <span class="tag">Python 3.10+</span><span class="tag">OWASP ZAP</span><span class="tag">Java 17+</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span>
         </div>
@@ -985,7 +1060,7 @@ footer{
             </div>
           </div>
         </div>
-        <p>Secret detection tool that goes beyond flagging leaked credentials: it verifies whether leaked keys are still active and enumerates real permissions (AWS IAM, GitHub scopes). Detects 17+ credential types across codebases and Git history using regex + Shannon entropy analysis, with risk scoring and SARIF integration for GitHub Security.</p>
+        <p>Secret detection tool that goes beyond flagging leaked credentials: it verifies whether leaked keys are still active and enumerates real permissions (AWS IAM, GitHub scopes). Detects 17+ credential types across codebases and Git history using regex + Shannon entropy analysis, with risk scoring, remediation guidance, SARIF output, a GitHub Action and a pre-commit hook. Published on PyPI.</p>
         <div class="tag-row">
           <span class="tag">Python 3.11+</span><span class="tag">Typer</span><span class="tag">Pydantic v2</span><span class="tag">boto3</span><span class="tag">SARIF 2.1.0</span>
         </div>
@@ -1013,16 +1088,16 @@ footer{
               <div class="arch-sub">Random forest + logreg</div>
             </div>
           </div>
-          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">95%+ accuracy</div></div>
-          <div class="arch-node is-output">
-            <svg><use href="#ic-check" xlink:href="#ic-check"></use></svg>
+          <div class="arch-arrow"><svg><use href="#ic-arrow-r" xlink:href="#ic-arrow-r"></use></svg><div class="arch-arrow-label">99.93% accuracy</div></div>
+          <div class="arch-node is-decision">
+            <svg><use href="#ic-alert" xlink:href="#ic-alert"></use></svg>
             <div class="arch-node-text">
-              <div class="arch-title">CROSS-VALIDATE</div>
-              <div class="arch-sub">Accuracy, F1, ROC on held-out CICIDS2018</div>
+              <div class="arch-title">CROSS-DATASET TEST</div>
+              <div class="arch-sub">CICIDS2018: 77.08% accuracy, 3% attack recall, gap documented</div>
             </div>
           </div>
         </div>
-        <p>AI-powered Network Intrusion Detection System trained on the CICIDS2017 dataset using Random Forest and Logistic Regression classifiers, achieving 95%+ accuracy across DoS, Probe, R2L, and U2R attack categories. Cross-validated against a completely separate CICIDS2018 dataset to prove real-world generalization, a step most portfolio IDS projects skip.</p>
+        <p>AI-powered Network Intrusion Detection System trained on the CICIDS2017 dataset using Random Forest and Logistic Regression classifiers, reaching 99.93% accuracy on CICIDS2017 (about 2.8M flows). Validated against the separate CICIDS2018 dataset and documented the generalization gap (77.08% accuracy, 3% attack recall), which shaped a V2 roadmap for adaptive retraining.</p>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Random Forest</span><span class="tag">Jupyter Notebook</span><span class="tag">CICIDS2017/2018</span>
         </div>
@@ -1117,11 +1192,11 @@ footer{
             <svg><use href="#ic-user-check" xlink:href="#ic-user-check"></use></svg>
             <div class="arch-node-text">
               <div class="arch-title">ESCALATE</div>
-            <div class="arch-sub">Confidence &lt; 35%, human review (HITL)</div>
+            <div class="arch-sub">Below 35%, user asks, or no context found</div>
             </div>
           </div>
         </div>
-        <p>A production-grade Retrieval-Augmented Generation system with LangGraph workflow orchestration, grounding all AI responses in a domain-specific knowledge base to drastically reduce hallucinations. Embeds a Human-in-the-Loop escalation path: when retrieval confidence drops below 35% or a user requests a human agent, the query routes to a live escalation ticket instead of guessing.</p>
+        <p>A Retrieval-Augmented Generation system with a 7-node LangGraph workflow, SentenceTransformers embeddings and a ChromaDB vector store over PDF knowledge bases. Intent classification and confidence-based routing escalate to a human agent when retrieval confidence falls below 35%, the user asks for a human, or no relevant context is found. Includes HLD/LLD documentation and a test suite.</p>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">SentenceTransformers</span><span class="tag">ChromaDB</span><span class="tag">Claude / GPT LLM</span>
         </div>
@@ -1138,17 +1213,27 @@ footer{
   <div class="wrap">
     <div class="eyebrow">verify --all ./certifications<span class="blink">_</span></div>
     <h2 class="section-title reveal">Certifications</h2>
-    <p class="section-sub reveal">Verified training and certification credentials in networking, SOC/AI tooling, and file &amp; network security fundamentals.</p>
+    <p class="section-sub reveal">Verified training and certification credentials in digital forensics, networking, SOC/AI tooling, and file &amp; network security fundamentals.</p>
 
     <div class="certs-grid">
 
       <div class="cert-card reveal">
-        <div class="cert-badge"><i class="fa-solid fa-diagram-project"></i></div>
-        <h4>CCNA: Introduction to Networks</h4>
-        <div class="cert-org">Cisco Networking Academy</div>
+        <div class="cert-badge"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h4>Greyhawk Certified Digital Forensics Practitioner</h4>
+        <div class="cert-org">Greyhawk Academy · Oct 2026 · 40-hr course + exam</div>
         <div class="cert-verify-row">
-          <a class="cert-verify" href="assets/certs/ccna-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
-          <a class="cert-verify" href="https://www.credly.com/badges/ff969aca-3843-4f7c-932b-a642a13eae53/linked_in_profile" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          <a class="cert-verify" href="assets/certs/greyhawk-gcdfp-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
+          <a class="cert-verify" href="https://greyhawkforensics.asia/academy/verify/GH-BC165DD3DEEE38446F525AD6C91420828629121D3A87F018" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4>Cybersecurity Defense Analyst Career Path</h4>
+        <div class="cert-org">Cisco Networking Academy with Splunk · Oct 2026</div>
+        <div class="cert-verify-row">
+          <a class="cert-verify" href="assets/certs/cda-pathway-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
+          <a class="cert-verify" href="https://www.credly.com/badges/a3d4c11a-ea17-4f90-8d4c-d7c028655c8d" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
       </div>
 
@@ -1159,6 +1244,16 @@ footer{
         <div class="cert-verify-row">
           <a class="cert-verify" href="assets/certs/socradar-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
           <a class="cert-verify" href="https://credsverse.com/credentials/5dabadeb-54e8-4abc-a1a3-5612e244c20a?preview=1" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fa-solid fa-diagram-project"></i></div>
+        <h4>CCNA: Introduction to Networks</h4>
+        <div class="cert-org">Cisco Networking Academy · Sep 2025</div>
+        <div class="cert-verify-row">
+          <a class="cert-verify" href="assets/certs/ccna-certificate.jpg" target="_blank" rel="noopener">View Cert</a>
+          <a class="cert-verify" href="https://www.credly.com/badges/ff969aca-3843-4f7c-932b-a642a13eae53/linked_in_profile" target="_blank" rel="noopener">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
       </div>
 
@@ -1321,8 +1416,8 @@ footer{
 
       <div class="ach-card reveal">
         <div class="ach-icon"><i class="fa-solid fa-code-branch"></i></div>
-        <h3>Open Source Connect India 2026: Contributor</h3>
-        <p>Recognized as a Contributor for Open Source Connect India 2026, one of the country's largest collaborative open-source initiatives, contributing security tools and automation projects.</p>
+        <h3>Open Source Connect India and Global 2026: Contributor</h3>
+        <p>Recognized as a Contributor for both Open Source Connect India 2026 and Open Source Connect Global 2026, large collaborative open-source initiatives, for contributing security tools and automation projects.</p>
         <div class="ach-links">
           <a href="assets/certs/osc-contributor-badge.png" target="_blank" rel="noopener"><i class="fa-solid fa-award"></i> Badge</a>
           <a href="assets/certs/osc-nexfellow-card.png" target="_blank" rel="noopener"><i class="fa-solid fa-id-badge"></i> Contributor Card</a>
