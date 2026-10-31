@@ -541,7 +541,7 @@ header{
 }
 .cert-group-head{display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:16px;}
 .cert-group-head h4{font-size:16px;}
-.cert-group-head .cert-org{margin-bottom:0;}
+.cert-group-head .cert-org{margin-bottom:0; font-size:12.5px; color:var(--text-muted); font-family:var(--mono); font-weight:400;}
 .cert-group-head .fa-chevron-down{color:var(--cyan); transition:transform .3s;}
 .cert-group-card.open .fa-chevron-down{transform:rotate(180deg);}
 .cert-sub-grid{
@@ -770,7 +770,7 @@ footer{
           <span class="tag">SAST</span><span class="tag">Vulnerability Scanning</span>
           <span class="tag">Reconnaissance</span><span class="tag">SARIF</span>
           <span class="tag">Malware Analysis Fundamentals</span>
-          <span class="tag">AI-Based Attack &amp; Defence</span><span class="tag">TCP/IP</span>
+          <span class="tag">AI-Based Attack &amp; Defense</span><span class="tag">TCP/IP</span>
         </div>
       </div>
 
@@ -1557,9 +1557,7 @@ const bootLines = [
   {type:'out2', text:'Digital Forensics & Cybersecurity Researcher'},
   {type:'gap'},
   {type:'cmd', text:'cat mission.txt'},
-  {type:'out2', text:'Investigating cybercrime, hunting vulnerabilities,'},
-  {type:'out2', text:'and building security tooling, targeting DFIR &'},
-  {type:'out2', text:'cybercrime investigation roles in government / intel.'},
+  {type:'out2', text:'Investigating cybercrime, hunting vulnerabilities, and building security tooling, targeting DFIR & cybercrime investigation roles in government / intel.'},
   {type:'gap'},
   {type:'cmd', text:'status --check'},
   {type:'out', text:'[OK] Final-year B.Tech, Cyber Security (2023–2027)'},
